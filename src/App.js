@@ -3,14 +3,16 @@ import './App.css';
 import Basic01 from './study/Basic01';
 import State01 from './study/State01';
 import Practice01 from './practice/Practice01';
-
+import Practice03 from './practice/practice03/Practice03';
+import NewsBlog from './newsblog/News';
+import Practice04 from './practice/practice04/Practice04';
 
 
 function App() {
 
   // return <Basic01 />;
   // return <State01 />;
-  return <Practice01 />;
+  return <NewsBlog />;
 
   
   // return (
