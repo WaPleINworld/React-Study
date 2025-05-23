@@ -6,13 +6,14 @@ import Practice01 from './practice/Practice01';
 import Practice03 from './practice/practice03/Practice03';
 import NewsBlog from './newsblog/News';
 import Practice04 from './practice/practice04/Practice04';
+import FoodMarket from './foodmarket/pages/FoodMarket';
 
 
 function App() {
 
   // return <Basic01 />;
   // return <State01 />;
-  return <NewsBlog />;
+  return <FoodMarket />;
 
   
   // return (

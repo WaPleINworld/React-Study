@@ -19,7 +19,7 @@ function NewsBlog(){
     let [likeCount2, setLikeCount2] = useState(0);
     let [likeCount3, setLikeCount3] = useState(0);
 
-    let [likeCountArr, setLikeCountArr] = useState( [] );
+    let [likeCountArr, setLikeCountArr] = useState( [0, 0, 0] );
 
     let [showModal, setShowModal] = useState(false);
     // 0 1
@@ -44,15 +44,18 @@ function NewsBlog(){
                 setInputText(event.target.value);
                 }}></input>
                 <button onClick={()=>{
-                //입력된 값을 제목 배열에 추가
-                //입력된 값 : input 요소에서 onChange 가 발생할때 -> inputText state변수에 저장되어 있음.
-                //제목배열 news 배열변수에 추가 -> 리렌더링 -> news배열의 갯수만큼 반복(map) 화면에 표시
 
-                //입력값이 있는 경우만~
-                if(inputText != '') {
-                        let temp = [...news, inputText]; //기존 배열 복사 + 새로운 값 추가
-                        temp.push(inputText); //기존 배열에 새로운 값 추가
-                        setNews(temp); //기존 배열에 새로운 배열 저장
+                    likeCountArr.push(0); //좋아요 카운트 배열에 0 추가
+
+                    //입력된 값을 제목 배열에 추가
+                    //입력된 값 : input 요소에서 onChange 가 발생할때 -> inputText state변수에 저장되어 있음.
+                    //제목배열 news 배열변수에 추가 -> 리렌더링 -> news배열의 갯수만큼 반복(map) 화면에 표시
+
+                    //입력값이 있는 경우만~
+                    if(inputText != '') {
+                        let temp = [...news]; //기존 배열 복사
+                        temp.push(inputText); //복사한 배열에 추가
+                        setNews(temp); //기존 배열에 저장
 
 
 
@@ -61,7 +64,6 @@ function NewsBlog(){
                     } else {
                         alert('값을 입력하세요');
                         setInputText(''); //공백 -> input value={inputText}
-
                     }
 
                     /*
@@ -87,16 +89,26 @@ function NewsBlog(){
                 setShowModal(!showModal);
                 setSelectedTitle(item);
                 setSelectedLikeCount(likeCountArr[index]);
-                }}>{item} <span onClick={(event)=>{
+                }}>{item} <span style={{color:'red'}}  onClick={(event)=>{
 
                 event.stopPropagation();
 
-                let temp = [...likeCountArr, 0];
+                let temp = [...likeCountArr];
                 temp[index] += 1;
                 setLikeCountArr(temp);
 
-                }}>❤</span>{likeCountArr[index]}</h4>
+                }}>♥</span>{likeCountArr[index]}</h4>
                 <p>내용 무</p>
+                <button onClick={()=>{
+                    //삭제
+                    let temp = [...news];
+                    temp.splice(index, 1); //index부터 1개 삭제
+                    setNews(temp);
+
+                    let temp2 = [...likeCountArr];
+                    temp2.splice(index, 1); //index부터 1개 삭제
+                    setLikeCountArr(temp2);
+                }}>삭제</button>
         </div>
     )
 
